@@ -20,6 +20,7 @@
 		C97CB91F2AA9068500ED78EB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB91E2AA9068500ED78EB /* HomeViewModel.swift */; };
 		C97CB9222AA90ABB00ED78EB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB9212AA90ABB00ED78EB /* APIService.swift */; };
 		C97CB9252AAA1FF700ED78EB /* CoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB9242AAA1FF700ED78EB /* CoinDataService.swift */; };
+		C97CB9272AAB127200ED78EB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB9262AAB127200ED78EB /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		C97CB91E2AA9068500ED78EB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		C97CB9212AA90ABB00ED78EB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C97CB9242AAA1FF700ED78EB /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
+		C97CB9262AAB127200ED78EB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				C97CB8F92AA8906500ED78EB /* CryptoXApp.swift */,
+				C97CB9202AA90AB400ED78EB /* Generics */,
 				C97CB9232AAA1FE300ED78EB /* Services */,
-				C97CB9202AA90AB400ED78EB /* NetworkManager */,
 				C97CB9172AA8A28200ED78EB /* Models */,
 				C97CB9092AA8917400ED78EB /* Extensions */,
 				C97CB90C2AA896BA00ED78EB /* Core */,
@@ -150,12 +152,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		C97CB9202AA90AB400ED78EB /* NetworkManager */ = {
+		C97CB9202AA90AB400ED78EB /* Generics */ = {
 			isa = PBXGroup;
 			children = (
 				C97CB9212AA90ABB00ED78EB /* APIService.swift */,
+				C97CB9262AAB127200ED78EB /* NetworkManager.swift */,
 			);
-			path = NetworkManager;
+			path = Generics;
 			sourceTree = "<group>";
 		};
 		C97CB9232AAA1FE300ED78EB /* Services */ = {
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C97CB9272AAB127200ED78EB /* NetworkManager.swift in Sources */,
 				C97CB91F2AA9068500ED78EB /* HomeViewModel.swift in Sources */,
 				C97CB91B2AA8A8D100ED78EB /* CoinRowView.swift in Sources */,
 				C97CB9122AA896F600ED78EB /* HomeView.swift in Sources */,

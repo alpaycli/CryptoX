@@ -16,6 +16,7 @@ class HomeViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     init() {
+        print("salam")
         fetchAllCoins()
         fetchPortfolioCoins()
     }

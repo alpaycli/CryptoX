@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showPortfolio: Bool = true
+    @State private var showPortfolio: Bool = false
     
     @EnvironmentObject private var viewModel: HomeViewModel
     
     var body: some View {
         ZStack {
-            // Background Setup
             Color.theme.backgroundColor
                 .ignoresSafeArea()
             
             VStack {
                 homeHeaderView
                 
-               columnTitles
+                columnTitles
                 
                 if showPortfolio {
                     portolioCoinsList
