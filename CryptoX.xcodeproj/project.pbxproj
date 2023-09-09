@@ -24,6 +24,7 @@
 		C97CB92B2AAC847600ED78EB /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB92A2AAC847600ED78EB /* CoinImageView.swift */; };
 		C97CB92D2AAC848700ED78EB /* CoinImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB92C2AAC848700ED78EB /* CoinImageViewModel.swift */; };
 		C97CB92F2AAC859E00ED78EB /* CoinImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB92E2AAC859E00ED78EB /* CoinImageService.swift */; };
+		C97CB9312AAC90F600ED78EB /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB9302AAC90F600ED78EB /* LocalFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		C97CB92A2AAC847600ED78EB /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		C97CB92C2AAC848700ED78EB /* CoinImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageViewModel.swift; sourceTree = "<group>"; };
 		C97CB92E2AAC859E00ED78EB /* CoinImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageService.swift; sourceTree = "<group>"; };
+		C97CB9302AAC90F600ED78EB /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			children = (
 				C97CB9212AA90ABB00ED78EB /* APIService.swift */,
 				C97CB9262AAB127200ED78EB /* NetworkManager.swift */,
+				C97CB9302AAC90F600ED78EB /* LocalFileManager.swift */,
 			);
 			path = Generics;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				C97CB91B2AA8A8D100ED78EB /* CoinRowView.swift in Sources */,
 				C97CB9122AA896F600ED78EB /* HomeView.swift in Sources */,
 				C97CB9222AA90ABB00ED78EB /* APIService.swift in Sources */,
+				C97CB9312AAC90F600ED78EB /* LocalFileManager.swift in Sources */,
 				C97CB8FA2AA8906500ED78EB /* CryptoXApp.swift in Sources */,
 				C97CB9142AA8978A00ED78EB /* CircleButtonView.swift in Sources */,
 				C97CB90B2AA8917C00ED78EB /* Color+Ext.swift in Sources */,
