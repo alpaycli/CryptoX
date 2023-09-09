@@ -15,7 +15,9 @@ final class CoinImageViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let service: CoinImageService
     
+    private let coin: Coin
     init(coin: Coin) {
+        self.coin = coin
         self.service = CoinImageService(coin: coin)
         self.isLoading = true
         addSubscriber()

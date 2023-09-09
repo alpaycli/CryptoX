@@ -20,14 +20,16 @@ struct HomeView: View {
             VStack {
                 homeHeaderView
                 
+                SearchBarView(searchText: $viewModel.searchText)
+                
                 columnTitles
                 
                 if showPortfolio {
                     portolioCoinsList
-                        .transition(.move(edge: .leading))
+                        .transition(.move(edge: .trailing))
                 } else {
                     allCoinsList
-                        .transition(.move(edge: .trailing))
+                        .transition(.move(edge: .leading))
                 }
                 
                 Spacer(minLength: 0)
