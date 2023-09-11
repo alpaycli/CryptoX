@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C938A0AA2AAF6E5A006842B5 /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938A0A92AAF6E5A006842B5 /* MarketData.swift */; };
+		C938A0AE2AAF713C006842B5 /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938A0AD2AAF713C006842B5 /* MarketDataService.swift */; };
+		C938A0B12AAF7752006842B5 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938A0B02AAF7752006842B5 /* StatisticsView.swift */; };
 		C97CB8FA2AA8906500ED78EB /* CryptoXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB8F92AA8906500ED78EB /* CryptoXApp.swift */; };
 		C97CB9012AA8906700ED78EB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C97CB9002AA8906700ED78EB /* Preview Assets.xcassets */; };
 		C97CB9082AA8912500ED78EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C97CB9072AA8912400ED78EB /* Assets.xcassets */; };
@@ -27,9 +30,14 @@
 		C97CB9312AAC90F600ED78EB /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB9302AAC90F600ED78EB /* LocalFileManager.swift */; };
 		C97CB9332AAD02F000ED78EB /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB9322AAD02F000ED78EB /* SearchBarView.swift */; };
 		C97CB9352AAD04DB00ED78EB /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97CB9342AAD04DB00ED78EB /* UIApplication+Ext.swift */; };
+		C99C96022AAF2B6600CF9298 /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C96012AAF2B6600CF9298 /* Statistic.swift */; };
+		C99C96052AAF2BEC00CF9298 /* StatisticItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99C96042AAF2BEC00CF9298 /* StatisticItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C938A0A92AAF6E5A006842B5 /* MarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData.swift; sourceTree = "<group>"; };
+		C938A0AD2AAF713C006842B5 /* MarketDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataService.swift; sourceTree = "<group>"; };
+		C938A0B02AAF7752006842B5 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		C97CB8F62AA8906500ED78EB /* CryptoX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97CB8F92AA8906500ED78EB /* CryptoXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoXApp.swift; sourceTree = "<group>"; };
 		C97CB9002AA8906700ED78EB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -51,6 +59,8 @@
 		C97CB9302AAC90F600ED78EB /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		C97CB9322AAD02F000ED78EB /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		C97CB9342AAD04DB00ED78EB /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
+		C99C96012AAF2B6600CF9298 /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistic.swift; sourceTree = "<group>"; };
+		C99C96042AAF2BEC00CF9298 /* StatisticItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C938A0AF2AAF773C006842B5 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				C99C96042AAF2BEC00CF9298 /* StatisticItemView.swift */,
+				C938A0B02AAF7752006842B5 /* StatisticsView.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
 		C97CB8ED2AA8906500ED78EB = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +153,7 @@
 		C97CB90E2AA896DB00ED78EB /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C938A0AF2AAF773C006842B5 /* Statistics */,
 				C97CB9292AAC846000ED78EB /* CoinImage */,
 				C97CB9282AAC845600ED78EB /* CircleButton */,
 				C97CB9322AAD02F000ED78EB /* SearchBarView.swift */,
@@ -162,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				C97CB9182AA8A28F00ED78EB /* Coin.swift */,
+				C99C96012AAF2B6600CF9298 /* Statistic.swift */,
+				C938A0A92AAF6E5A006842B5 /* MarketData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,6 +203,7 @@
 			children = (
 				C97CB9242AAA1FF700ED78EB /* CoinDataService.swift */,
 				C97CB92E2AAC859E00ED78EB /* CoinImageService.swift */,
+				C938A0AD2AAF713C006842B5 /* MarketDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -274,14 +297,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C97CB92B2AAC847600ED78EB /* CoinImageView.swift in Sources */,
+				C938A0AE2AAF713C006842B5 /* MarketDataService.swift in Sources */,
 				C97CB9272AAB127200ED78EB /* NetworkManager.swift in Sources */,
 				C97CB91F2AA9068500ED78EB /* HomeViewModel.swift in Sources */,
 				C97CB92D2AAC848700ED78EB /* CoinImageViewModel.swift in Sources */,
 				C97CB91B2AA8A8D100ED78EB /* CoinRowView.swift in Sources */,
+				C938A0AA2AAF6E5A006842B5 /* MarketData.swift in Sources */,
+				C99C96022AAF2B6600CF9298 /* Statistic.swift in Sources */,
 				C97CB9122AA896F600ED78EB /* HomeView.swift in Sources */,
 				C97CB9222AA90ABB00ED78EB /* APIService.swift in Sources */,
+				C99C96052AAF2BEC00CF9298 /* StatisticItemView.swift in Sources */,
 				C97CB9312AAC90F600ED78EB /* LocalFileManager.swift in Sources */,
 				C97CB8FA2AA8906500ED78EB /* CryptoXApp.swift in Sources */,
+				C938A0B12AAF7752006842B5 /* StatisticsView.swift in Sources */,
 				C97CB9142AA8978A00ED78EB /* CircleButtonView.swift in Sources */,
 				C97CB90B2AA8917C00ED78EB /* Color+Ext.swift in Sources */,
 				C97CB9162AA89B9500ED78EB /* CircleButtonAnimationView.swift in Sources */,
