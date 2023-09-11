@@ -37,7 +37,7 @@ struct SearchBarView: View {
         .background(
             RoundedRectangle(cornerRadius: 25)
                 .fill(Color.theme.backgroundColor)
-                .shadow(color: Color.theme.accentColor, radius: 10)
+                .shadow(color: Color.theme.accentColor.opacity(0.25), radius: 10)
             
         )
         .padding()

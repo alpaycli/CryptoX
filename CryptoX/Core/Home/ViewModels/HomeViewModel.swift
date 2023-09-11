@@ -24,9 +24,12 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchAllCoins() {
-        service.$allCoins
-            .sink { [weak self] resultCoins in
-                self?.allCoins = resultCoins
+        $searchText
+            .combineLatest(service.$allCoins)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .map(filterCoins)
+            .sink { [weak self] returnedCoins in
+                self?.allCoins = returnedCoins
             }
             .store(in: &cancellables)
     }
@@ -36,4 +39,17 @@ class HomeViewModel: ObservableObject {
         
         portfolioCoins = coins
     }
+    
+    private func filterCoins(text: String, coins: [Coin]) -> [Coin] {
+        guard !text.isEmpty else { return coins }
+        
+        let lowercasedText = text.lowercased()
+        
+        return coins.filter { coin in
+            return coin.name.contains(lowercasedText) ||
+            coin.id.contains(lowercasedText) ||
+            coin.symbol.contains(lowercasedText)
+        }
+    }
+    
 }
