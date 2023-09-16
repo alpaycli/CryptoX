@@ -18,14 +18,24 @@ class HomeViewModel: ObservableObject {
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
+    private let portolioDataService = PortfolioDataService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
         addSubscribers()
-        fetchPortfolioCoins()
     }
     
-    func addSubscribers() {
+    // MARK: Public methods
+    
+    func updatePortolio(coin: Coin, amount: Double) {
+        portolioDataService.updatePortolio(coin: coin, amount: amount)
+    }
+    
+    // MARK: Private methods
+    
+    private func addSubscribers() {
+        
+        // updates allCoins
         $searchText
             .combineLatest(coinDataService.$allCoins)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
@@ -35,18 +45,28 @@ class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         
+        // updates marketData
         marketDataService.$marketData
             .map(filterMarketData)
             .sink { [weak self] returnedData in
                 self?.statistics = returnedData
             }
             .store(in: &cancellables)
-    }
-    
-    func fetchPortfolioCoins() {
-        let coins = [Coin.example]
         
-        portfolioCoins = coins
+        // updates portolio coins
+        $allCoins
+            .combineLatest(portolioDataService.$portolioCoins)
+            .map { (coins, portolioEntities) -> [Coin] in
+                coins
+                    .compactMap { coin -> Coin? in
+                        guard let entity = portolioEntities.first(where: { $0.id == coin.id }) else { return nil }
+                        return coin.updateHoldings(with: entity.amount)
+                }
+            }
+            .sink { [weak self] returnedCoins in
+                self?.portfolioCoins = returnedCoins
+            }
+            .store(in: &cancellables)
     }
     
     private func filterCoins(text: String, coins: [Coin]) -> [Coin] {
