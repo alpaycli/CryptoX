@@ -16,7 +16,7 @@ final class MarketDataService: ObservableObject {
         fetchMarketData()
     }
     
-    private func fetchMarketData() {
+    func fetchMarketData() {
         guard let url = URL(string: "https://api.coingecko.com/api/v3/global") else { return }
         
         coinSubscription = NetworkManager.download(from: url)

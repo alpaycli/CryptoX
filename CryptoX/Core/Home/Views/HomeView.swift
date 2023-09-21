@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var showPortfolio: Bool = false
-    @State private var showEditPortolio: Bool = false
-    
     @EnvironmentObject private var viewModel: HomeViewModel
     
     var body: some View {
         ZStack {
             Color.theme.backgroundColor
                 .ignoresSafeArea()
-                .sheet(isPresented: $showEditPortolio) {
+                .sheet(isPresented: $viewModel.showEditPortolio) {
                     EditPortfolioView()
                         .environmentObject(viewModel)
                 }
@@ -25,13 +22,13 @@ struct HomeView: View {
             VStack {
                 homeHeaderView
                 
-                StatisticsView(showingPortolio: $showPortfolio)
+                StatisticsView(showingPortolio: $viewModel.showPortfolio)
                 
                 SearchBarView(searchText: $viewModel.searchText)
                 
                 columnTitles
                 
-                if showPortfolio {
+                if viewModel.showPortfolio {
                     portolioCoinsList
                         .transition(.move(edge: .trailing))
                 } else {
@@ -58,27 +55,27 @@ struct HomeView_Previews: PreviewProvider {
 extension HomeView {
     private var homeHeaderView: some View {
         HStack {
-            CircleButtonView(imageName: showPortfolio ? "plus" : "info")
+            CircleButtonView(imageName: viewModel.showPortfolio ? "plus" : "info")
                 .animation(.none, value: 0)
                 .background(
-                    CircleButtonAnimationView(isAnimated: $showPortfolio)
+                    CircleButtonAnimationView(isAnimated: $viewModel.showPortfolio)
                 )
                 .onTapGesture {
-                    if showPortfolio { showEditPortolio = true }
+                    if viewModel.showPortfolio { viewModel.showEditPortolio = true }
                 }
             
             Spacer()
-            Text(showPortfolio ? "Portfolio" : "Live Prices")
+            Text(viewModel.showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundColor(Color.theme.accentColor)
                 .animation(.none)
             Spacer()
             CircleButtonView(imageName: "arrow.right")
-                .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
+                .rotationEffect(Angle(degrees: viewModel.showPortfolio ? 180 : 0))
                 .onTapGesture {
                     withAnimation(.spring()) {
-                        showPortfolio.toggle()
+                        viewModel.showPortfolio.toggle()
                     }
                 }
             
@@ -87,16 +84,71 @@ extension HomeView {
     
     private var columnTitles: some View {
         HStack {
-            Text("Coin")
+            HStack {
+                Text("Coin")
+                
+                if viewModel.currentOption == .rank || viewModel.currentOption == .rankReversed {
+                    Image(systemName: "chevron.up")
+                        .rotationEffect(Angle(degrees: viewModel.rankOption == .rank ? 0 : 180))
+                }
+            }
+            .onTapGesture {
+                withAnimation {
+                    if viewModel.rankOption == .rank {
+                        viewModel.sortData(option: .rankReversed)
+                        viewModel.rankOption = .rankReversed
+                    } else {
+                        viewModel.sortData(option: .rank)
+                        viewModel.rankOption = .rank
+                    }
+                }
+            }
             
             Spacer()
             
-            if showPortfolio {
-                Text("Holdings")
+            if viewModel.showPortfolio {
+                HStack {
+                    Text("Holdings")
+                    
+                    if viewModel.currentOption == .holdings || viewModel.currentOption == .holdingsReversed {
+                        Image(systemName: "chevron.up")
+                            .rotationEffect(Angle(degrees: viewModel.holdingsOption == .holdings ? 0 : 180))
+                    }
+                }
+                .onTapGesture {
+                    withAnimation {
+                        if viewModel.holdingsOption == .holdings {
+                            viewModel.sortData(option: .holdingsReversed)
+                            viewModel.holdingsOption = .holdingsReversed
+                        } else {
+                            viewModel.sortData(option: .holdings)
+                            viewModel.holdingsOption = .holdings
+                        }
+                    }
+                }
             }
             
-            Text("Price")
-                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            HStack {
+                Text("Prices")
+                
+                if viewModel.currentOption == .price || viewModel.currentOption == .priceReversed {
+                    Image(systemName: "chevron.up")
+                        .rotationEffect(Angle(degrees: viewModel.priceOption == .price ? 0 : 180))
+                }
+            }
+            .onTapGesture {
+                withAnimation {
+                    if viewModel.priceOption == .price {
+                        viewModel.sortData(option: .priceReversed)
+                        viewModel.priceOption = .priceReversed
+                    } else {
+                        viewModel.sortData(option: .price)
+                        viewModel.priceOption = .price
+                    }
+                }
+            }
+            .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            
         }
         .foregroundColor(Color.theme.secondaryTextColor)
         .font(.caption)
@@ -109,6 +161,9 @@ extension HomeView {
                 .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         }
         .listStyle(.plain)
+        .refreshable {
+            viewModel.reloadData()
+        }
     }
     
     private var portolioCoinsList: some View {
@@ -119,4 +174,66 @@ extension HomeView {
         .listStyle(.plain)
     }
     
+    // MARK: Sorting methods
+    
+//    private func sortByRank() {
+//        switch rankOption {
+//        case .none:
+//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
+//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
+//            }
+//            rankOption = .ascending
+//        case .ascending:
+//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
+//                first.marketCapRank ?? 0 > second.marketCapRank ?? 0
+//            }
+//            rankOption = .descending
+//        case .descending:
+//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
+//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
+//            }
+//            rankOption = .none
+//        }
+//    }
+//
+//    private func sortByPrices() {
+//        switch priceOption {
+//        case .none:
+//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
+//                first.currentPrice > second.currentPrice
+//            }
+//            priceOption = .ascending
+//        case .ascending:
+//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
+//                first.currentPrice < second.currentPrice
+//            }
+//            priceOption = .descending
+//        case .descending:
+//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
+//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
+//            }
+//            priceOption = .none
+//        }
+//    }
+//
+//    private func sortByHoldings() {
+//        switch holdingsOption {
+//        case .none:
+//            viewModel.portfolioCoins = viewModel.portfolioCoins.sorted { first, second in
+//                first.currentHoldingsValue > second.currentHoldingsValue
+//            }
+//            holdingsOption = .ascending
+//        case .ascending:
+//            viewModel.portfolioCoins = viewModel.portfolioCoins.sorted { first, second in
+//                first.currentHoldingsValue < second.currentHoldingsValue
+//            }
+//            holdingsOption = .descending
+//        case .descending:
+//            viewModel.portfolioCoins = viewModel.portfolioCoins.sorted { first, second in
+//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
+//            }
+//            holdingsOption = .none
+//        }
+//
+//    }
 }
