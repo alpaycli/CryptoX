@@ -87,19 +87,16 @@ extension HomeView {
             HStack {
                 Text("Coin")
                 
-                if viewModel.currentOption == .rank || viewModel.currentOption == .rankReversed {
-                    Image(systemName: "chevron.up")
-                        .rotationEffect(Angle(degrees: viewModel.rankOption == .rank ? 0 : 180))
-                }
+                Image(systemName: "chevron.down")
+                    .opacity( (viewModel.sortOption == .rank || viewModel.sortOption == .rankReversed) ? 1 : 0 )
+                    .rotationEffect(Angle(degrees: viewModel.sortOption == .rankReversed ? 180 : 0))
             }
             .onTapGesture {
                 withAnimation {
-                    if viewModel.rankOption == .rank {
-                        viewModel.sortData(option: .rankReversed)
-                        viewModel.rankOption = .rankReversed
+                    if viewModel.sortOption == .rank {
+                        viewModel.sortOption = .rankReversed
                     } else {
-                        viewModel.sortData(option: .rank)
-                        viewModel.rankOption = .rank
+                        viewModel.sortOption = .rank
                     }
                 }
             }
@@ -110,19 +107,16 @@ extension HomeView {
                 HStack {
                     Text("Holdings")
                     
-                    if viewModel.currentOption == .holdings || viewModel.currentOption == .holdingsReversed {
-                        Image(systemName: "chevron.up")
-                            .rotationEffect(Angle(degrees: viewModel.holdingsOption == .holdings ? 0 : 180))
-                    }
+                    Image(systemName: "chevron.down")
+                        .opacity( (viewModel.sortOption == .holdings || viewModel.sortOption == .holdingsReversed) ? 1 : 0 )
+                        .rotationEffect(Angle(degrees: viewModel.sortOption == .holdingsReversed ? 180 : 0))
                 }
                 .onTapGesture {
                     withAnimation {
-                        if viewModel.holdingsOption == .holdings {
-                            viewModel.sortData(option: .holdingsReversed)
-                            viewModel.holdingsOption = .holdingsReversed
+                        if viewModel.sortOption == .holdings {
+                            viewModel.sortOption = .holdingsReversed
                         } else {
-                            viewModel.sortData(option: .holdings)
-                            viewModel.holdingsOption = .holdings
+                            viewModel.sortOption = .holdings
                         }
                     }
                 }
@@ -131,19 +125,16 @@ extension HomeView {
             HStack {
                 Text("Prices")
                 
-                if viewModel.currentOption == .price || viewModel.currentOption == .priceReversed {
-                    Image(systemName: "chevron.up")
-                        .rotationEffect(Angle(degrees: viewModel.priceOption == .price ? 0 : 180))
-                }
+                Image(systemName: "chevron.down")
+                    .opacity( (viewModel.sortOption == .price || viewModel.sortOption == .priceReversed) ? 1 : 0 )
+                    .rotationEffect(Angle(degrees: viewModel.sortOption == .priceReversed ? 180 : 0))
             }
             .onTapGesture {
                 withAnimation {
-                    if viewModel.priceOption == .price {
-                        viewModel.sortData(option: .priceReversed)
-                        viewModel.priceOption = .priceReversed
+                    if viewModel.sortOption == .price {
+                        viewModel.sortOption = .priceReversed
                     } else {
-                        viewModel.sortData(option: .price)
-                        viewModel.priceOption = .price
+                        viewModel.sortOption = .price
                     }
                 }
             }
@@ -173,67 +164,4 @@ extension HomeView {
         }
         .listStyle(.plain)
     }
-    
-    // MARK: Sorting methods
-    
-//    private func sortByRank() {
-//        switch rankOption {
-//        case .none:
-//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
-//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
-//            }
-//            rankOption = .ascending
-//        case .ascending:
-//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
-//                first.marketCapRank ?? 0 > second.marketCapRank ?? 0
-//            }
-//            rankOption = .descending
-//        case .descending:
-//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
-//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
-//            }
-//            rankOption = .none
-//        }
-//    }
-//
-//    private func sortByPrices() {
-//        switch priceOption {
-//        case .none:
-//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
-//                first.currentPrice > second.currentPrice
-//            }
-//            priceOption = .ascending
-//        case .ascending:
-//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
-//                first.currentPrice < second.currentPrice
-//            }
-//            priceOption = .descending
-//        case .descending:
-//            viewModel.allCoins = viewModel.allCoins.sorted { first, second in
-//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
-//            }
-//            priceOption = .none
-//        }
-//    }
-//
-//    private func sortByHoldings() {
-//        switch holdingsOption {
-//        case .none:
-//            viewModel.portfolioCoins = viewModel.portfolioCoins.sorted { first, second in
-//                first.currentHoldingsValue > second.currentHoldingsValue
-//            }
-//            holdingsOption = .ascending
-//        case .ascending:
-//            viewModel.portfolioCoins = viewModel.portfolioCoins.sorted { first, second in
-//                first.currentHoldingsValue < second.currentHoldingsValue
-//            }
-//            holdingsOption = .descending
-//        case .descending:
-//            viewModel.portfolioCoins = viewModel.portfolioCoins.sorted { first, second in
-//                first.marketCapRank ?? 0 < second.marketCapRank ?? 0
-//            }
-//            holdingsOption = .none
-//        }
-//
-//    }
 }
