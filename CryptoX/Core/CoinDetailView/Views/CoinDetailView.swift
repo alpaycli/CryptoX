@@ -22,16 +22,61 @@ struct CoinDetailLoadingView: View {
 }
 
 struct CoinDetailView: View {
-    let coin: Coin
+    @StateObject private var viewModel: CoinDetailViewModel
+    private let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    private let spacing: CGFloat = 30
+    init(coin: Coin) {
+        _viewModel = StateObject(wrappedValue: CoinDetailViewModel(coin: coin))
+    }
     var body: some View {
-        VStack {
-            Text(coin.name)
+        ScrollView {
+            VStack(spacing: 20) {
+                
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.red)
+                    .frame(width: 100, height: 100)
+                
+                Text("Overview")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.theme.accentColor)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Divider()
+                
+                LazyVGrid(columns: columns, alignment: .leading, spacing: spacing) {
+                    ForEach(viewModel.overviewStatistics) { stat in
+                        StatisticItemView(statistic: stat)
+                    }
+                }
+                
+                Text("Additional")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.theme.accentColor)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Divider()
+                
+                LazyVGrid(columns: columns, alignment: .leading, spacing: spacing) {
+                    ForEach(viewModel.additionalStatistics) { stat in
+                        StatisticItemView(statistic: stat)
+                    }
+                }
+            }
+            .padding(.leading)
         }
+        .navigationTitle(viewModel.coin.name)
     }
 }
 
 struct CoinDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinDetailView(coin: Coin.example)
+        NavigationView {
+            CoinDetailView(coin: Coin.example)
+        }
     }
 }
