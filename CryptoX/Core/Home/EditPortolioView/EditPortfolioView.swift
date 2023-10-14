@@ -158,7 +158,7 @@ extension EditPortfolioView {
         .font(.headline)
     }
     
-    var trailingNavBarButton: some View {
+    private var trailingNavBarButton: some View {
         HStack {
             Image(systemName: "checkmark")
                 .opacity(showCheckmark ? 1 : 0)

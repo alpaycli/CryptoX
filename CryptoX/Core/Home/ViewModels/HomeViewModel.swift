@@ -9,9 +9,10 @@ import Combine
 import Foundation
 
 final class HomeViewModel: ObservableObject {
-    @Published var searchText = ""
     
     @Published var statistics: [Statistic] = []
+    
+    @Published var searchText = ""
     
     @Published var allCoins: [Coin] = []
     @Published var portfolioCoins: [Coin] = []

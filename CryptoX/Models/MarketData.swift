@@ -168,7 +168,7 @@ struct GlobalData: Codable {
     let data: MarketData
 }
 
-// MARK: - DataClass
+// MARK: - DataClass  
 struct MarketData: Codable {
     let totalMarketCap, totalVolume, marketCapPercentage: [String: Double]
     let marketCapChangePercentage24HUsd: Double

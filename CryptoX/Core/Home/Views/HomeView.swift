@@ -61,6 +61,7 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 extension HomeView {
+    
     private var homeHeaderView: some View {
         HStack {
             CircleButtonView(imageName: viewModel.showPortfolio ? "plus" : "info")
@@ -174,7 +175,9 @@ extension HomeView {
         }
         .listStyle(.plain)
     }
-    
+}
+
+extension HomeView {
     private func seque(coin: Coin) {
         selectedCoin = coin
         showDetailView.toggle()

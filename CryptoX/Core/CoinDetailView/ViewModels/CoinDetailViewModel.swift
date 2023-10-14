@@ -11,6 +11,10 @@ import Foundation
 final class CoinDetailViewModel: ObservableObject {
     @Published var overviewStatistics: [Statistic] = []
     @Published var additionalStatistics: [Statistic] = []
+    
+    @Published var coinDescription: String? = nil
+    @Published var coinSubredditURL: String? = nil
+    @Published var coinHomepageURL: String? = nil
         
     private let coinDetailDataService: CoinDetailDataService
     private var cancellables = Set<AnyCancellable>()
@@ -30,6 +34,16 @@ final class CoinDetailViewModel: ObservableObject {
                 self?.overviewStatistics = returnedData.overview
                 self?.additionalStatistics = returnedData.additional
                 print("returning coinDetailData")
+            }
+            .store(in: &cancellables)
+        
+        
+        coinDetailDataService.$coinDetailData
+            .sink { [weak self] returnedData in
+                guard let self else { return }
+                self.coinDescription = returnedData?.description?.en
+                self.coinSubredditURL = returnedData?.links?.subredditURL
+                self.coinHomepageURL = returnedData?.links?.homepage?.first
             }
             .store(in: &cancellables)
     }
